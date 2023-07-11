@@ -53,11 +53,19 @@ class Book(BaseModel):
 @app.post("/api")
 def add_character(new_book: Book):
     new_id = max([x.get("id") for x in database]) + 1
-    database.append({
+    book = {
         "id": new_id,
         "author": new_book.author,
-    })
-    return database
+        "title": new_book.title,
+        "country": new_book.country,
+        "imageLink": new_book.imageLink,
+        "language": new_book.language,
+        "link": new_book.link,
+        "pages": new_book.pages,
+        "year": new_book.year,
+    }
+    database.append(book)
+    return book
 
 @app.put("/api/{id}")
 def add_character(id, new_book: Book):
@@ -65,11 +73,19 @@ def add_character(id, new_book: Book):
     if book == None:
         raise HTTPException(status_code=404, detail="Book not found")
     database.remove(book)
-    database.append({
+    book = {
         "id": book.get("id"),
         "author": new_book.author,
-    })
-    return database
+        "title": new_book.title,
+        "country": new_book.country,
+        "imageLink": new_book.imageLink,
+        "language": new_book.language,
+        "link": new_book.link,
+        "pages": new_book.pages,
+        "year": new_book.year,
+    }
+    database.append(book)
+    return book
 
 @app.delete("/api/{id}")
 def delete_by_id(id):

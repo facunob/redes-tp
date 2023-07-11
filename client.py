@@ -31,17 +31,19 @@ resp = requests.post(
       apiUrl,
       json = {
           "author": "nuevo autor"
+          #
       }
     )
 print(resp.status_code)
 
 
 # PUT
-print(f'POST {apiUrl}')
+print(f'PUT {apiUrl}/5')
 resp = requests.put(
       f'{apiUrl}/5',
       json = {
           "author": "autor modificado"
+          #
       }
     )
 print(resp.status_code)
